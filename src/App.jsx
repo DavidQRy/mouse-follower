@@ -27,6 +27,16 @@ const FollowMouse = () => {
     }
   }, [enabled])
 
+  useEffect(() => {
+    // Se ejecuta después del renderizado
+    document.body.classList.toggle('no-cursor', enabled)
+
+    // Cleanup - se ejecuta ANTES del próximo efecto o al desmontar
+    return () => {
+      document.body.classList.remove('no-cursor')
+    }
+  }, [enabled])
+
   return (
     <>
       {enabled && <div style={{
